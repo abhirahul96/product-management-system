@@ -8,6 +8,10 @@ router.post('/', (req, res) => {
   productController.addProduct(req, res);
 });
 
+router.post('/bulk', (req, res) => {
+  productController.bulkInsert(req, res);
+});
+
 router.put('/:id', (req, res) => {
   productController.updateProduct(req, res);
 });

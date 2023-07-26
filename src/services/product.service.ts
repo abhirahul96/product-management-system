@@ -28,6 +28,23 @@ class ProductService {
     }
   }
 
+  public async bulkInsert(products: AddProductDto[]): Promise<MessageResponse> {
+    try {
+      products.forEach((product: AddProductDto) => {
+        const newProduct: Product = {
+          id: this._generateProductId(),
+          ...product,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        };
+        this.products.push(newProduct);
+      });
+      return { message: 'Products Created Successfully', statusCode: 201 };
+    } catch (error) {
+      throw error;
+    }
+  }
+
   public async updateProduct(
     id: string,
     product: AddProductDto,

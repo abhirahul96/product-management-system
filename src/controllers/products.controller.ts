@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import ProductService from '../services/product.service';
 
 import { AddProductDto } from '../dto/add-product.dto';
+import productValidation from '../validators/product.validator';
 
 class ProductController {
   private productService: ProductService;
@@ -13,6 +14,21 @@ class ProductController {
     const product = req.body as AddProductDto;
     try {
       const response = await this.productService.addProduct(product);
+      res.status(response.statusCode).json(response);
+    } catch (error: any) {
+      // Handle any errors and send an error response
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+  public async bulkInsert(req: Request, res: Response) {
+    const product = req.body.products as AddProductDto[];
+    try {
+      const validation = await productValidation(product);
+      if (validation) {
+        return res.status(400).json({ error: validation });
+      }
+      const response = await this.productService.bulkInsert(product);
       res.status(response.statusCode).json(response);
     } catch (error: any) {
       // Handle any errors and send an error response
