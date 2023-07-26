@@ -21,15 +21,43 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/v1/product",
+					"raw": "{{baseURl}}/api/v1/product",
 					"host": [
-						"localhost"
+						"{{baseURl}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"v1",
 						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product bulk",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"products\": [\n        {\n            \"productName\": \"string\",\n            \"productDescription\": \"string\",\n            \"price\": 1,\n            \"category\": \"string\",\n            \"stockQuantity\": 2\n        },\n        {\n            \n            \"productDescription\": \"string\",\n            \"price\": \"number\",\n            \"category\": \"string\",\n            \"stockQuantity\": \"number\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURl}}/api/v1/product/bulk",
+					"host": [
+						"{{baseURl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"product",
+						"bulk"
 					]
 				}
 			},
@@ -50,11 +78,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/v1/product/:id",
+					"raw": "{{baseURl}}/api/v1/product/:id",
 					"host": [
-						"localhost"
+						"{{baseURl}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"v1",
@@ -77,11 +104,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/api/v1/product/:id",
+					"raw": "{{baseURl}}/api/v1/product/:id",
 					"host": [
-						"localhost"
+						"{{baseURl}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"v1",
@@ -104,11 +130,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/api/v1/product",
+					"raw": "{{baseURl}}/api/v1/product",
 					"host": [
-						"localhost"
+						"{{baseURl}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"v1",
@@ -124,11 +149,10 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/api/v1/product/:id",
+					"raw": "{{baseURl}}/api/v1/product/:id",
 					"host": [
-						"localhost"
+						"{{baseURl}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"v1",
@@ -144,6 +168,37 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "{{baseURl}}",
+			"value": "https://product-management-system-aee1.onrender.com",
+			"type": "string"
+		},
+		{
+			"key": "baseURl",
+			"value": "https://product-management-system-aee1.onrender.com"
 		}
 	]
 }
