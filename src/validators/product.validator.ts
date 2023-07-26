@@ -18,15 +18,15 @@ async function productValidation(products: AddProductDto[]) {
     });
 
     const errorObj: { index: number; fields: any } = {
-      index: index + 1,
+      index: index,
       fields: {},
     };
     if (error) {
       error.details.forEach(detail => {
         errorObj.fields[detail.context?.key || ''] = detail.message;
       });
+      errors.push(errorObj);
     }
-    errors.push(errorObj);
   });
 
   return errors;

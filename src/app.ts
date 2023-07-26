@@ -2,17 +2,20 @@ import express from 'express';
 import routes from './routes';
 import path from 'path';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 export class App {
   private app: express.Application;
 
   constructor() {
     this.app = express();
+    this.app.use(cors());
     this.app.use(bodyParser.urlencoded({ extended: true, limit: '7mb' }));
     this.app.use(bodyParser.json({ limit: '7mb' }));
     // Set EJS as the view engine
     this.app.set('view engine', 'ejs');
     // Set the views folder to your custom folder
     this.app.set('views', path.join(__dirname, 'templates'));
+
     this.setupRoutes();
   }
 

@@ -25,7 +25,7 @@ class ProductController {
     const product = req.body.products as AddProductDto[];
     try {
       const validation = await productValidation(product);
-      if (validation) {
+      if (validation.length) {
         return res.status(400).json({ error: validation });
       }
       const response = await this.productService.bulkInsert(product);
